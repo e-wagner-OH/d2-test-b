@@ -1,0 +1,16 @@
+shape: sequence_diagram
+user: Provider {
+  icon: https://s3-us-west-1.amazonaws.com/terrastruct.uploaded-images/2104338302/fucucvgxbsfwytiyuehlisludrmkzp.png
+  shape: image
+}
+app
+patient
+epic: {
+  icon: https://s3-us-west-1.amazonaws.com/terrastruct.uploaded-images/2104338302/xxgginpesbxwgnoikdumgywpccanoi.png
+}
+user -> patient: triage condition
+user -> epic: document in Epic
+epic -> app: vendor app reads EMR
+app -> app: data compiles
+app -> user: reviews updated prognosis
+user -> patient: updates patient

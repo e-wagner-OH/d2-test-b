@@ -1,0 +1,16 @@
+app: {
+    icon: https://icons.terrastruct.com/essentials%2F006-window.svg
+}
+db: database {
+    icon: https://icons.terrastruct.com/essentials%2F117-database.svg
+}
+table: db schema {
+    shape: sql_table
+    id: int {constraint: primary_key}
+    username: string
+    email: string
+    password: hash
+    last_updated: timestamp with time zone
+}
+
+app <-> db <- table

@@ -1,0 +1,87 @@
+direction: right
+# d2_layout: tala
+# grid-rows: 3
+# vars: {
+#   d2-config: {
+#     layout-engine: tala
+#   }
+# }
+...@../classes
+ext: External {
+  class: ext
+  vendor: Vendor website {
+    class: ext_c
+  }
+  vendor: Vendor\nsupport {
+    # shape: person
+    icon: https://icons.terrastruct.com/essentials/365-user.svg
+    shape: image
+  }
+  users: ext users {
+    # shape: person
+    icon: https://icons.terrastruct.com/essentials/359-users.svg
+    shape: image
+  }
+}
+ext.vendor -> dc.fw.sl
+ext.users -> dc.fw.https
+dc: Data Center {
+  class: dc
+  fw: DC firewall {
+    icon: https://icons.terrastruct.com/infra%2F003-firewall.svg
+    sl: secure link rule for\nexternal access
+    https: https inbound rule
+    class: dc_c
+  }
+  server: {
+    icon: https://icons.terrastruct.com/essentials%2F112-server.svg
+    shape: image
+  }
+  database: {
+    icon: https://icons.terrastruct.com/azure/Databases%20Service%20Color/Azure%20Database%20(Generic).svg
+    shape: image
+  }
+  epic: {
+    icon: https://s3-us-west-1.amazonaws.com/terrastruct.uploaded-images/2104338302/xxgginpesbxwgnoikdumgywpccanoi.png
+    shape: image
+    label: " "
+  }
+  fw.sl -> server
+  server -> database
+  server -> epic
+  fw.https -> server
+}
+c.users -> dc.server
+c: Campus {
+  class: campus
+  Users: providers {
+    icon: https://s3-us-west-1.amazonaws.com/terrastruct.uploaded-images/2104338302/fucucvgxbsfwytiyuehlisludrmkzp.png
+    shape: image
+  }
+  process: Vendor Process {
+    class: campus_c
+    shape: diamond
+    link: layers.process
+    info: {
+      link: notes
+    }
+  }
+  users -> process: {
+    style.stroke-dash: 5
+  }
+}
+
+layers: {
+  notes: {
+    ...@notes
+  }
+  process: {
+    ...@provider_workflow
+  }
+  network: {
+    ...@network
+  }
+  storage: {
+    ...@storage_needs
+  }
+}

@@ -1,0 +1,61 @@
+# import the classes
+...@classes
+...@connections
+
+# comment out the info container 
+info: |md
+  # Use this file as a template
+
+  Replace or alter the contents of this file to meet your diagram needs
+
+  - reuse the classes and connections
+  - add containers and icons to represent the SDP
+  - save changes and check into git
+|
+
+# display code examples
+code: |bash
+  git pull
+  get fetch
+  # edit code/ files
+  git add .
+  git commit -m "blah blah"
+  git push
+|
+
+# containers defined here with classes
+ext: external network {
+  class: ext
+  user: Vendor {
+    class: ext_c
+    shape: person
+  }
+}
+dc: datacenter {
+  class: dc
+  app: application {
+    class: dc_c
+  }
+  db: database {
+    icon: https://icons.terrastruct.com/azure%2FDatabases%20Service%20Color%2FSQL%20Databases.svg
+    shape: image
+  }
+  epic: "" {
+    icon: https://s3-us-west-1.amazonaws.com/terrastruct.uploaded-images/2104338302/xxgginpesbxwgnoikdumgywpccanoi.png
+    shape: image
+  }
+  # nested connection
+  app -> db
+}
+campus: campus {
+  class: campus
+  user: Provider {
+    shape: person
+    class: campus_c
+  }
+}
+
+# define the connections and using classes
+ext.user -> dc.app: supports {class: red-dash}
+dc.app -> dc.epic: interfaces {class: green-dash}
+campus.user -> dc.app: access {class: blue-bold}

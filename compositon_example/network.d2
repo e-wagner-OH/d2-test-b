@@ -1,0 +1,72 @@
+...@../classes
+classes: {
+  user: {
+    style: {
+      stroke-dash: 3
+      animated: true
+      stroke: green
+    }
+  }
+  app: {
+    style: {
+      stroke-dash: 6
+      animated: true
+      stroke: red
+    }
+  }
+}
+ext: external {
+  class: ext
+  vendor: Vendor website {
+    class: ext_c
+  }
+  ext: ext traffic {
+    icon: https://icons.terrastruct.com/azure/Web%20Service%20Color/App%20Service%20Domains.svg
+  }
+  mfa: Azure MFA {
+    icon: https://icons.terrastruct.com/aws/Security,%20Identity,%20&%20Compliance/AWS-Identity-and-Access-Management-IAM_MFA-Token_light-bg.svg
+    shape: image
+  }
+}
+dc.vlan -> ext.mfa: allow rule for VLAN1234 for MFA {
+  class: app
+}
+dc.vlan -> ext.vendor: allow rule for VLAN1234 for vendor website {
+  class: app
+}
+dc.vlan -> ext.ext: allow rule for VLAN1234 for ext user {
+  class: user
+}
+c.ws -> dc.vlan: allow rule for VLAN1234 internal users {
+  class: user
+}
+dc: data center {
+  class: dc
+  vlan: VLAN 1234 {
+    server: {
+      icon: https://icons.terrastruct.com/essentials%2F112-server.svg
+      shape: image
+    }
+    database: {
+      icon: https://icons.terrastruct.com/azure/Databases%20Service%20Color/Azure%20Database%20(Generic).svg
+      shape: image
+    }
+    server -> database
+  }
+  vlan -> epic: allow rule for VLAN 1234 {
+    class: app
+  }
+  epic: {
+    icon: https://s3-us-west-1.amazonaws.com/terrastruct.uploaded-images/2104338302/xxgginpesbxwgnoikdumgywpccanoi.png
+    shape: image
+    label: " "
+  }
+}
+
+c: campus {
+  class: campus
+  ws: workstations {
+    icon: https://icons.terrastruct.com/tech%2Flaptop.svg
+    shape: image
+  }
+}

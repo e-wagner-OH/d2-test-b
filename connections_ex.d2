@@ -1,0 +1,26 @@
+...@connections
+
+here -> there: d2 default connection
+here -> somewhere: blue-dash class {class: blue-dash}
+here -> anywhere: red-dash class {class: red-dash}
+anywhere -> there: blue bold class {class: blue-bold}
+there -> anywhere: green-dash class {
+  # add to the class. Like make the font bigger than defined
+  class: green-dash
+  style: {
+    font-size: 50
+    font-color: darkgreen
+  }
+}
+somewhere -> there: do something custom {
+  # create a custom style
+  style: {
+    stroke: orange
+    stroke-dash: 2
+    stroke-width: 12
+    font-size: 20
+    font-color: red
+    underline: true
+    italic: true
+  }
+}
